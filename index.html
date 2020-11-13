@@ -30,7 +30,7 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="data/bikeways_3587_3.js"></script>
+        <script src="data/Bikeways_3.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
@@ -43,10 +43,11 @@
             if (bounds_group.getLayers().length) {
                 map.fitBounds(bounds_group.getBounds());
             }
+            map.setMaxBounds(map.getBounds());
         }
         map.createPane('pane_StamenToner_0');
         map.getPane('pane_StamenToner_0').style.zIndex = 400;
-        var layer_StamenToner_0 = L.tileLayer('http://a.tile.stamen.com/toner/{z}/{x}/{y}.png', {
+        var layer_StamenToner_0 = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png', {
             pane: 'pane_StamenToner_0',
             opacity: 1.0,
             attribution: '',
@@ -57,25 +58,25 @@
         });
         layer_StamenToner_0;
         map.addLayer(layer_StamenToner_0);
-        map.createPane('pane_motoristcrashes3587_1');
-        map.getPane('pane_motoristcrashes3587_1').style.zIndex = 401;
-        var img_motoristcrashes3587_1 = 'data/motoristcrashes3587_1.png';
-        var img_bounds_motoristcrashes3587_1 = [[43.57363208922042,-79.65055359045566],[43.869754997432324,-79.10292781248981]];
-        var layer_motoristcrashes3587_1 = new L.imageOverlay(img_motoristcrashes3587_1,
-                                              img_bounds_motoristcrashes3587_1,
-                                              {pane: 'pane_motoristcrashes3587_1'});
-        bounds_group.addLayer(layer_motoristcrashes3587_1);
-        map.addLayer(layer_motoristcrashes3587_1);
-        map.createPane('pane_cyclistcrashes3587_2');
-        map.getPane('pane_cyclistcrashes3587_2').style.zIndex = 402;
-        var img_cyclistcrashes3587_2 = 'data/cyclistcrashes3587_2.png';
-        var img_bounds_cyclistcrashes3587_2 = [[43.583087806695985,-79.62470203228409],[43.84755177773114,-79.23573610914303]];
-        var layer_cyclistcrashes3587_2 = new L.imageOverlay(img_cyclistcrashes3587_2,
-                                              img_bounds_cyclistcrashes3587_2,
-                                              {pane: 'pane_cyclistcrashes3587_2'});
-        bounds_group.addLayer(layer_cyclistcrashes3587_2);
-        map.addLayer(layer_cyclistcrashes3587_2);
-        function pop_bikeways_3587_3(feature, layer) {
+        map.createPane('pane_Collisionsinvolvingmotorists_1');
+        map.getPane('pane_Collisionsinvolvingmotorists_1').style.zIndex = 401;
+        var img_Collisionsinvolvingmotorists_1 = 'data/Collisionsinvolvingmotorists_1.png';
+        var img_bounds_Collisionsinvolvingmotorists_1 = [[43.57363208922042,-79.65055359045566],[43.869754997432324,-79.10292781248981]];
+        var layer_Collisionsinvolvingmotorists_1 = new L.imageOverlay(img_Collisionsinvolvingmotorists_1,
+                                              img_bounds_Collisionsinvolvingmotorists_1,
+                                              {pane: 'pane_Collisionsinvolvingmotorists_1'});
+        bounds_group.addLayer(layer_Collisionsinvolvingmotorists_1);
+        map.addLayer(layer_Collisionsinvolvingmotorists_1);
+        map.createPane('pane_Collisionsinvolvingcyclists_2');
+        map.getPane('pane_Collisionsinvolvingcyclists_2').style.zIndex = 402;
+        var img_Collisionsinvolvingcyclists_2 = 'data/Collisionsinvolvingcyclists_2.png';
+        var img_bounds_Collisionsinvolvingcyclists_2 = [[43.583087806538735,-79.6247020326501],[43.84755177796738,-79.23573610949943]];
+        var layer_Collisionsinvolvingcyclists_2 = new L.imageOverlay(img_Collisionsinvolvingcyclists_2,
+                                              img_bounds_Collisionsinvolvingcyclists_2,
+                                              {pane: 'pane_Collisionsinvolvingcyclists_2'});
+        bounds_group.addLayer(layer_Collisionsinvolvingcyclists_2);
+        map.addLayer(layer_Collisionsinvolvingcyclists_2);
+        function pop_Bikeways_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['GEO_ID'] !== null ? autolinker.link(feature.properties['GEO_ID'].toLocaleString()) : '') + '</td>\
@@ -141,11 +142,11 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_bikeways_3587_3_0(feature) {
+        function style_Bikeways_3_0(feature) {
             switch(String(feature.properties['CP_TYPE'])) {
                 case 'Bike Lanes':
                     return {
-                pane: 'pane_bikeways_3587_3',
+                pane: 'pane_Bikeways_3',
                 opacity: 1,
                 color: 'rgba(226,24,35,1.0)',
                 dashArray: '',
@@ -158,7 +159,7 @@
                     break;
                 case 'Cycle Tracks':
                     return {
-                pane: 'pane_bikeways_3587_3',
+                pane: 'pane_Bikeways_3',
                 opacity: 1,
                 color: 'rgba(231,184,108,1.0)',
                 dashArray: '',
@@ -171,7 +172,7 @@
                     break;
                 case 'Informal Dirt Footpath':
                     return {
-                pane: 'pane_bikeways_3587_3',
+                pane: 'pane_Bikeways_3',
                 opacity: 1,
                 color: 'rgba(231,34,179,1.0)',
                 dashArray: '',
@@ -184,7 +185,7 @@
                     break;
                 case 'Major Multi-use Pathway':
                     return {
-                pane: 'pane_bikeways_3587_3',
+                pane: 'pane_Bikeways_3',
                 opacity: 1,
                 color: 'rgba(63,167,208,1.0)',
                 dashArray: '',
@@ -197,7 +198,7 @@
                     break;
                 case 'Minor Multi-use Pathway':
                     return {
-                pane: 'pane_bikeways_3587_3',
+                pane: 'pane_Bikeways_3',
                 opacity: 1,
                 color: 'rgba(191,238,71,1.0)',
                 dashArray: '',
@@ -210,7 +211,7 @@
                     break;
                 case 'Park Roads Cycling Connections':
                     return {
-                pane: 'pane_bikeways_3587_3',
+                pane: 'pane_Bikeways_3',
                 opacity: 1,
                 color: 'rgba(33,235,158,1.0)',
                 dashArray: '',
@@ -223,7 +224,7 @@
                     break;
                 case 'Quiet Street Cycling Routes':
                     return {
-                pane: 'pane_bikeways_3587_3',
+                pane: 'pane_Bikeways_3',
                 opacity: 1,
                 color: 'rgba(37,239,27,1.0)',
                 dashArray: '',
@@ -236,7 +237,7 @@
                     break;
                 case 'Signed Routes':
                     return {
-                pane: 'pane_bikeways_3587_3',
+                pane: 'pane_Bikeways_3',
                 opacity: 1,
                 color: 'rgba(158,39,236,1.0)',
                 dashArray: '',
@@ -249,7 +250,7 @@
                     break;
                 default:
                     return {
-                pane: 'pane_bikeways_3587_3',
+                pane: 'pane_Bikeways_3',
                 opacity: 1,
                 color: 'rgba(29,41,217,1.0)',
                 dashArray: '',
@@ -262,22 +263,22 @@
                     break;
             }
         }
-        map.createPane('pane_bikeways_3587_3');
-        map.getPane('pane_bikeways_3587_3').style.zIndex = 403;
-        map.getPane('pane_bikeways_3587_3').style['mix-blend-mode'] = 'normal';
-        var layer_bikeways_3587_3 = new L.geoJson(json_bikeways_3587_3, {
+        map.createPane('pane_Bikeways_3');
+        map.getPane('pane_Bikeways_3').style.zIndex = 403;
+        map.getPane('pane_Bikeways_3').style['mix-blend-mode'] = 'normal';
+        var layer_Bikeways_3 = new L.geoJson(json_Bikeways_3, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_bikeways_3587_3',
-            layerName: 'layer_bikeways_3587_3',
-            pane: 'pane_bikeways_3587_3',
-            onEachFeature: pop_bikeways_3587_3,
-            style: style_bikeways_3587_3_0,
+            dataVar: 'json_Bikeways_3',
+            layerName: 'layer_Bikeways_3',
+            pane: 'pane_Bikeways_3',
+            onEachFeature: pop_Bikeways_3,
+            style: style_Bikeways_3_0,
         });
-        bounds_group.addLayer(layer_bikeways_3587_3);
-        map.addLayer(layer_bikeways_3587_3);
+        bounds_group.addLayer(layer_Bikeways_3);
+        map.addLayer(layer_Bikeways_3);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'Bikeways<br /><table><tr><td style="text-align: center;"><img src="legend/bikeways_3587_3_BikeLanes0.png" /></td><td>Bike Lanes</td></tr><tr><td style="text-align: center;"><img src="legend/bikeways_3587_3_CycleTracks1.png" /></td><td>Cycle Tracks</td></tr><tr><td style="text-align: center;"><img src="legend/bikeways_3587_3_InformalDirtFootpath2.png" /></td><td>Informal Dirt Footpath</td></tr><tr><td style="text-align: center;"><img src="legend/bikeways_3587_3_MajorMultiusePathway3.png" /></td><td>Major Multi-use Pathway</td></tr><tr><td style="text-align: center;"><img src="legend/bikeways_3587_3_MinorMultiusePathway4.png" /></td><td>Minor Multi-use Pathway</td></tr><tr><td style="text-align: center;"><img src="legend/bikeways_3587_3_ParkRoadsCyclingConnections5.png" /></td><td>Park Roads Cycling Connections</td></tr><tr><td style="text-align: center;"><img src="legend/bikeways_3587_3_QuietStreetCyclingRoutes6.png" /></td><td>Quiet Street Cycling Routes</td></tr><tr><td style="text-align: center;"><img src="legend/bikeways_3587_3_SignedRoutes7.png" /></td><td>Signed Routes</td></tr><td></td></tr></table>': layer_bikeways_3587_3,"Cyclist Crashes ": layer_cyclistcrashes3587_2,"Motorist Crashes": layer_motoristcrashes3587_1},{collapsed:false},).addTo(map);
+        L.control.layers(baseMaps,{'Bikeways<br /><table><tr><td style="text-align: center;"><img src="legend/Bikeways_3_BikeLanes0.png" /></td><td>Bike Lanes</td></tr><tr><td style="text-align: center;"><img src="legend/Bikeways_3_CycleTracks1.png" /></td><td>Cycle Tracks</td></tr><tr><td style="text-align: center;"><img src="legend/Bikeways_3_InformalDirtFootpath2.png" /></td><td>Informal Dirt Footpath</td></tr><tr><td style="text-align: center;"><img src="legend/Bikeways_3_MajorMultiusePathway3.png" /></td><td>Major Multi-use Pathway</td></tr><tr><td style="text-align: center;"><img src="legend/Bikeways_3_MinorMultiusePathway4.png" /></td><td>Minor Multi-use Pathway</td></tr><tr><td style="text-align: center;"><img src="legend/Bikeways_3_ParkRoadsCyclingConnections5.png" /></td><td>Park Roads Cycling Connections</td></tr><tr><td style="text-align: center;"><img src="legend/Bikeways_3_QuietStreetCyclingRoutes6.png" /></td><td>Quiet Street Cycling Routes</td></tr><tr><td style="text-align: center;"><img src="legend/Bikeways_3_SignedRoutes7.png" /></td><td>Signed Routes</td></tr><tr><td></td></tr></table>': layer_Bikeways_3,"Collisions involving cyclists": layer_Collisionsinvolvingcyclists_2,"Collisions involving motorists": layer_Collisionsinvolvingmotorists_1,}, {collapsed:false} ).addTo(map);
         setBounds();
         L.ImageOverlay.include({
             getBounds: function () {
